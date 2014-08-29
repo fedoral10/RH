@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="Vacacion" table="VACACION" lazy="true" >
-    <id name="Vacacion" column="VACACION" />
+    <id name="VacacionID" column="VACACION" />
     <property name="Empleado">
       <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
     </property>

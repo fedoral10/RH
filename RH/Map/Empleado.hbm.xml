@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="Empleado" table="EMPLEADO" lazy="true" >
-    <id name="Empleado" column="EMPLEADO" />
+    <id name="EmpleadoID" column="EMPLEADO" />
     <property name="PrimerNombre">
       <column name="PRIMER_NOMBRE" sql-type="Varchar" not-null="false" />
     </property>

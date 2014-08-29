@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsRepo.cs" />
     <Compile Include="Domain\Empleado.cs" />
     <Compile Include="Domain\PagoHist.cs" />
     <Compile Include="Domain\SalarioBaseHist.cs" />
@@ -138,10 +139,10 @@
     <EmbeddedResource Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="Map\Empleado.hbm.xml" />
-    <Content Include="Map\PagoHist.hbm.xml" />
-    <Content Include="Map\SalarioBaseHist.hbm.xml" />
-    <Content Include="Map\Vacacion.hbm.xml" />
+    <EmbeddedResource Include="Map\Empleado.hbm.xml" />
+    <EmbeddedResource Include="Map\PagoHist.hbm.xml" />
+    <EmbeddedResource Include="Map\SalarioBaseHist.hbm.xml" />
+    <EmbeddedResource Include="Map\Vacacion.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

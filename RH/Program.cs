@@ -12,7 +12,7 @@ namespace RH
         [STAThread]
         static void Main()
         {
-            NHhelper.GetCurrentSession();
+            //NHhelper.GetCurrentSession();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

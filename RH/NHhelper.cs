@@ -16,13 +16,14 @@ namespace RH
         {
             Configuration configuration = new Configuration();
           /*configuration.AddProperties(NHibernate.Connection.ConnectionProvider)*/
-            configuration.AddAssembly(Assembly.GetCallingAssembly());
-            configuration.AddAssembly(typeof(Domain.Empleado).Assembly);
-            configuration.AddAssembly(typeof(Domain.PagoHist).Assembly);
-            configuration.AddAssembly(typeof(Domain.SalarioBaseHist).Assembly);
-            configuration.AddAssembly(typeof(Domain.Vacacion).Assembly);
+            //configuration.AddAssembly(Assembly.GetCallingAssembly());
             configuration.Configure();
             SessionFactory = configuration.BuildSessionFactory();
+            /*configuration.AddAssembly(typeof(Domain.Empleado).Assembly);
+            configuration.AddAssembly(typeof(Domain.PagoHist).Assembly);
+            configuration.AddAssembly(typeof(Domain.SalarioBaseHist).Assembly);
+            configuration.AddAssembly(typeof(Domain.Vacacion).Assembly);*/
+            
             //NHibernate.Dialect.SQLiteDialect
         }
 

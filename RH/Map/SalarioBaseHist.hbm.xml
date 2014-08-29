@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="SalarioBaseHist" table="SALARIO_BASE_HIST" lazy="true" >
-    <id name="SalarioBaseHist" column="SALARIO_BASE_HIST" />
+    <id name="SalarioBaseHistID" column="SALARIO_BASE_HIST" />
     <property name="Empleado">
       <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
     </property>
