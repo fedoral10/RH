@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Vacacion" table="VACACION" lazy="true" >
+    <id name="Vacacion" column="VACACION" />
+    <property name="Empleado">
+      <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
+    </property>
+    <property name="Motivo">
+      <column name="MOTIVO" sql-type="Varchar " not-null="false" />
+    </property>
+    <property name="Fecha">
+      <column name="FECHA" sql-type="Datetime" not-null="false" />
+    </property>
+    <property name="DiaCompleto">
+      <column name="DIA_COMPLETO" sql-type="INTEGER" not-null="false" />
+    </property>
+    <property name="Horas">
+      <column name="HORAS" sql-type="Double" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

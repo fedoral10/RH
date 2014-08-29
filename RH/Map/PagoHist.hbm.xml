@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PagoHist" table="PAGO_HIST" lazy="true" >
+    <id name="PagoHist" column="PAGO_HIST" />
+    <property name="Empleado">
+      <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
+    </property>
+    <property name="Monto">
+      <column name="MONTO" sql-type="Decimal " not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

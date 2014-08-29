@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Empleado" table="EMPLEADO" lazy="true" >
+    <id name="Empleado" column="EMPLEADO" />
+    <property name="PrimerNombre">
+      <column name="PRIMER_NOMBRE" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="SegundoNombre">
+      <column name="SEGUNDO_NOMBRE" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="PrimerApellido">
+      <column name="PRIMER_APELLIDO" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="SegundoApellido">
+      <column name="SEGUNDO_APELLIDO" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="Cedula">
+      <column name="CEDULA" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="FechaNacimiento">
+      <column name="FECHA_NACIMIENTO" sql-type="Datetime" not-null="false" />
+    </property>
+    <property name="NumeroInss">
+      <column name="NUMERO_INSS" sql-type="Varchar" not-null="false" />
+    </property>
+    <property name="SalarioBase">
+      <column name="SALARIO_BASE" sql-type="Decimal" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>
