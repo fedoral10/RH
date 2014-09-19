@@ -1,3 +1,5 @@
 RH/bin/*
 RH/obj/*
 packages
+*.sh
+RH.v12.suo
