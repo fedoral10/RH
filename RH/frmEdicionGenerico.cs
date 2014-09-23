@@ -14,28 +14,21 @@ namespace RH
     public partial class frmEdicionGenerico : Form
     {
         //Panel 
-        LayoutControl ogpPanelPrincipal;
+        //LayoutControl ogpPanelPrincipal;
         public frmEdicionGenerico()
         {
             InitializeComponent();
-            ogpPanelPrincipal = new LayoutControl();
-            ogpPanelPrincipal.Location = new Point(0, 0);
-            this.Controls.Add(ogpPanelPrincipal);
-            
-        }
-
-        private void cambiar_tamanio_panel()
-        {
-            ogpPanelPrincipal.Size = this.Size;
-
-            ogpPanelPrincipal.ResumeLayout(false);
-            ogpPanelPrincipal.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            //ogpPanelPrincipal = new LayoutControl();
+            //ogpPanelPrincipal.Location = new Point(0, 0);
+            //this.cambiar_tamanio_panel();
+            //this.Controls.Add(ogpPanelPrincipal);
         }
         public void AgregarControl(Control control)
         {
             this.ogpPanelPrincipal.Controls.Add(control);
+            this.ogpPanelPrincipal.Refresh();
+            this.ogpPanelPrincipal.Update();
+            //this.Controls.Add(control);
         }
         public void EliminaControl(Control control)
         { 
@@ -44,134 +37,207 @@ namespace RH
 
         private void frmEdicionGenerico_Load(object sender, EventArgs e)
         {
-            cambiar_tamanio_panel();
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 
-    public class PropiedadNumerica : NumericUpDown
+    public class PropiedadNumerica : UserControl
     {
         public enum TIPO {FLOTANTE,ENTERA}
         string ogsNombre;
-        public PropiedadNumerica(TIPO tipo,string nombre)
+        public NumericUpDown cuadro;
+        public Label etiqueta;
+        
+        private void InicializarObjetos()
         {
-            if (tipo == TIPO.FLOTANTE)
-            {
-                this.DecimalPlaces = 2;
-            }
-            else 
-            {
-                this.DecimalPlaces = 0;
-            }
-            this.Maximum = 99999999999999999;
-            this.Minimum = -99999999999999999;
-            this.Value = 0;
-            this.Size = new Size(100, 20);
-        }
-        public PropiedadNumerica(TIPO tipo,decimal valor_inicial)
-        {
-            if (tipo == TIPO.FLOTANTE)
-            {
-                this.DecimalPlaces = 2;
-            }
-            else
-            {
-                this.DecimalPlaces = 0;
-            }
-            this.Maximum = 99999999999999999;
-            this.Minimum = -99999999999999999;
-            this.Value = valor_inicial;
-            this.Size = new Size(100, 20);
-        }
-        public PropiedadNumerica(decimal valor_inicial,int cantidad_decimales )
-        {
+            //this.SuspendLayout();
+            this.cuadro = new NumericUpDown();
+            this.etiqueta = new Label();
+            this.cuadro.Name = "cuadro";
+            this.etiqueta.Name = "etiqueta";
 
-            this.DecimalPlaces = cantidad_decimales;
-
-            this.Maximum = 99999999999999999;
-            this.Minimum = -99999999999999999;
-            this.Value = valor_inicial;
-            this.Size = new Size(100, 20);
-            this.Location = new Point(0, 0);
-        }
-        public PropiedadNumerica(TIPO tipo,decimal minimo,decimal maximo)
-        {
-            if (tipo == TIPO.FLOTANTE)
+            if (string.IsNullOrEmpty(this.Nombre))
             {
-                this.DecimalPlaces = 2;
+                this.etiqueta.Text = "Numerico: ";
             }
             else
             {
-                this.DecimalPlaces = 0;
+                this.etiqueta.Text = this.Nombre + ": ";
             }
-            this.Maximum = maximo;
-            this.Minimum = -minimo;
-            this.Value = 0;
-            this.Size = new Size(100, 20);
-        }
-        public PropiedadNumerica(TIPO tipo, decimal minimo, decimal maximo,decimal valor_inicial)
-        {
-            if (tipo == TIPO.FLOTANTE)
-            {
-                this.DecimalPlaces = 2;
-            }
-            else
-            {
-                this.DecimalPlaces = 0;
-            }
-            this.Maximum = maximo;
-            this.Minimum = -minimo;
-            this.Value = valor_inicial;
-            this.Size = new Size(100, 20);
+            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
+            this.etiqueta.Size = new Size(textSize.Width,cuadro.Height);
+            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(etiqueta);
+            this.Controls.Add(cuadro);
+            this.cuadro.Location = new Point(etiqueta.Width, 1);
+            
+            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+            //this.BackColor = Color.Azure;
+            /*this.ResumeLayout(false);
+            this.PerformLayout();*/
+            //this.AutoSize = true;
         }
         public string Nombre
         {
-            get { return ogsNombre; }
-            set { ogsNombre = value; }
+            get { return this.ogsNombre; }
+            set { this.ogsNombre = value; }
         }
-
-
-
-        public Control ObtenerControl()
+        private void InicializaValores(TIPO tipo, decimal valor_inicial = 0, int cantidad_decimales = 0, decimal maximo = 99999999999999999, decimal minimo = -99999999999999999)
         {
-            Label etiqueta = new Label();
-            Control control = new Control();
-            
-            if (string.IsNullOrEmpty(this.Nombre))
+            if (tipo == TIPO.FLOTANTE &&cantidad_decimales ==0)
             {
-                etiqueta.Text = "Numerico: ";
+                this.cuadro.DecimalPlaces = 2;
+            }
+            if(tipo == TIPO.ENTERA)
+            {
+                this.cuadro.DecimalPlaces = 0;
+            }
+            if(tipo == TIPO.FLOTANTE && cantidad_decimales != 0)
+            {
+                this.cuadro.DecimalPlaces = cantidad_decimales;
+            }
+            this.cuadro.Maximum = maximo;
+            this.cuadro.Minimum = minimo;
+            this.cuadro.Value = valor_inicial;
+        }
+        public PropiedadNumerica(string nombre,TIPO tipo)
+        {
+            this.Nombre = nombre;
+            InicializarObjetos();
+            InicializaValores(tipo);
+            /*if (tipo == TIPO.FLOTANTE)
+            {
+                this.cuadro.DecimalPlaces = 2;
+            }
+            else 
+            {
+                this.cuadro.DecimalPlaces = 0;
+            }
+            this.cuadro.Maximum = 99999999999999999;
+            this.cuadro.Minimum = -99999999999999999;
+            this.cuadro.Value = 0;*/
+            //this.cuadro.Size = new Size(100, 20);
+        }
+        public PropiedadNumerica(string nombre, TIPO tipo, decimal valor_inicial)
+        {
+            this.Nombre = nombre;
+            InicializarObjetos();
+            InicializaValores(tipo, valor_inicial);
+            /*if (tipo == TIPO.FLOTANTE)
+            {
+                this.cuadro.DecimalPlaces = 2;
             }
             else
             {
-                etiqueta.Text = this.Nombre + ": ";
+                this.cuadro.DecimalPlaces = 0;
             }
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
-            etiqueta.Location = new Point(0, 0);
-            control.Controls.Add(etiqueta);
-            control.Controls.Add(this);
-            control.Size = new Size(this.Width, this.Height + etiqueta.Height + 5);
-            control.Location = new Point(0, 0);
-            control.ResumeLayout(false);
-            control.PerformLayout();
-            return control;
+            this.cuadro.Maximum = 99999999999999999;
+            this.cuadro.Minimum = -99999999999999999;
+            this.cuadro.Value = valor_inicial;*/
+            //this.cuadro.Size = new Size(100, 20);
+        }
+        public PropiedadNumerica(string nombre,TIPO tipo, decimal valor_inicial, int cantidad_decimales)
+        {
+            this.Nombre = nombre;
+            InicializarObjetos();
+            InicializaValores(tipo, valor_inicial, cantidad_decimales);
+            /*this.cuadro.DecimalPlaces = cantidad_decimales;
+
+            this.cuadro.Maximum = 99999999999999999;
+            this.cuadro.Minimum = -99999999999999999;
+            this.cuadro.Value = valor_inicial;*/
+            //this.cuadro.Size = new Size(100, 20);
+        }
+        public PropiedadNumerica(string nombre, TIPO tipo, decimal minimo, decimal maximo)
+        {
+            this.Nombre = nombre;
+            InicializarObjetos();
+            InicializaValores(tipo, 0,0, maximo, minimo);
+            /*if (tipo == TIPO.FLOTANTE)
+            {
+                this.cuadro.DecimalPlaces = 2;
+            }
+            else
+            {
+                this.cuadro.DecimalPlaces = 0;
+            }
+            this.cuadro.Maximum = maximo;
+            this.cuadro.Minimum = -minimo;
+            this.cuadro.Value = 0;*/
+            //this.cuadro.Size = new Size(100, 20);
+        }
+        public PropiedadNumerica(string nombre, TIPO tipo, decimal minimo, decimal maximo, decimal valor_inicial)
+        {
+            this.Nombre = nombre;
+            InicializaValores(tipo, valor_inicial, 0, maximo, minimo);
+            /*if (tipo == TIPO.FLOTANTE)
+            {
+                this.cuadro.DecimalPlaces = 2;
+            }
+            else
+            {
+                this.cuadro.DecimalPlaces = 0;
+            }
+            this.cuadro.Maximum = maximo;
+            this.cuadro.Minimum = -minimo;
+            this.cuadro.Value = valor_inicial;*/
+            //this.cuadro.Size = new Size(100, 20);
         }
     }
-
-    public class PropiedadCadenaTexto : TextBox
+    public class PropiedadCadenaTexto : UserControl
     {
         public enum TIPO {MULTILINEA,LINEA_UNICA}
+        public TextBox cuadro;
+        public Label etiqueta;
+        public void InicializaValores(TIPO tipo,int ancho=100, int alto=20,string texto_inicial ="",string texto_etiqueta="")
+        {
+            this.cuadro = new TextBox();
+            this.etiqueta = new Label();
+            this.cuadro.Size = new Size(ancho, alto);
+            this.cuadro.Text = texto_inicial;
+            this.etiqueta.Text = texto_etiqueta;
+            if (tipo == TIPO.LINEA_UNICA)
+            {
+                this.cuadro.Multiline = false;
+            }
+            else
+            {
+                this.cuadro.Multiline = true;
+            }
+            if (string.IsNullOrEmpty(texto_etiqueta))
+            {
+                this.etiqueta.Text = "Cadena: ";
+            }
+            else
+            {
+                this.etiqueta.Text = texto_etiqueta + ": ";
+            }
+            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
+            this.etiqueta.Size = new Size(textSize.Width, cuadro.Height);
+            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(etiqueta);
+            this.Controls.Add(cuadro);
+            this.cuadro.Location = new Point(etiqueta.Width, 1);
+
+            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+        }
         public PropiedadCadenaTexto()
         {
-            this.Size = new Size(100, 20);
+            InicializaValores(TIPO.LINEA_UNICA);
         }
-        public PropiedadCadenaTexto(int ancho, int alto)
+        public PropiedadCadenaTexto(TIPO tipo,int ancho, int alto)
         {
-            this.Size = new Size(ancho, alto);
+            InicializaValores(tipo,ancho, alto);
         }
 
     }
 
-    public class PropiedadFecha : DateTimePicker
+    public class PropiedadFecha : UserControl
     {
         public enum TIPO {FECHA_CORTA,FECHA_LARGA,FECHA_CORTA_HORA,FECHA_LARGA_HORA}
 
@@ -180,14 +246,36 @@ namespace RH
         Size ogsFormato_Largo_Hora = new Size(270, 20);//long time
         Size ogsFormato_Corto_Hora = new Size(150, 20);//short time
 
+
+        public DateTimePicker cuadro;
+        public Label etiqueta;
+
+        private void InicializaValores(TIPO tipo = TIPO.FECHA_CORTA, DateTime valor_inicial=new DateTime(),string texto_etiqueta="Fecha: ")
+        {
+            valor_inicial = DateTime.Now;
+            this.cuadro = new DateTimePicker();
+            this.etiqueta = new Label();
+            cambia_formato(this.cuadro, tipo);
+            this.cuadro.Value = valor_inicial;
+            this.etiqueta.Text = texto_etiqueta;
+            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
+            this.etiqueta.Size = new Size(textSize.Width, cuadro.Height);
+            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(etiqueta);
+            this.Controls.Add(cuadro);
+            this.cuadro.Location = new Point(etiqueta.Width, 1);
+
+            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+        }
         public PropiedadFecha()
         {
-            this.Format = DateTimePickerFormat.Short;
-            this.Size = ogsFormato_Corto;
+            InicializaValores();
+            /*this.cuadro.Format = DateTimePickerFormat.Short;
+            this.cuadro.Size = ogsFormato_Corto;*/
         }
         public PropiedadFecha(TIPO tipo)
         {
-            cambia_formato(this,tipo);
+            InicializaValores(tipo);
         }
         private void cambia_formato(DateTimePicker dtp, TIPO tipo)
         { 
@@ -209,7 +297,7 @@ namespace RH
                 break;
                 case TIPO.FECHA_LARGA_HORA:
                     dtp.Format = DateTimePickerFormat.Custom;
-                    dtp.CustomFormat = "dddd, dd de MMMM de yyyy hh:mm:ss tt";
+                    dtp.CustomFormat = "dddd, dd 'de' MMMM 'de' yyyy hh:mm:ss tt";
                     dtp.Size = ogsFormato_Largo_Hora;
                 break;
             }

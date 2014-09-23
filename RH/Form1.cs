@@ -28,14 +28,23 @@ namespace RH
             repo.Insertar<Empleado>(ex);*/
 
             frmEdicionGenerico frm = new frmEdicionGenerico();
-            PropiedadNumerica num1 = new PropiedadNumerica(0,0);
-            PropiedadNumerica num2 = new PropiedadNumerica(0, 2);
-            PropiedadNumerica num3 = new PropiedadNumerica(2,1);
-            frm.AgregarControl(num1.ObtenerControl());
-            frm.AgregarControl(num2.ObtenerControl());
-            frm.AgregarControl(num3.ObtenerControl());
+            PropiedadNumerica num1 = new PropiedadNumerica("num1",0,0);
+            PropiedadNumerica num2 = new PropiedadNumerica("num2", 0, 2);
+            PropiedadNumerica num3 = new PropiedadNumerica("num3",PropiedadNumerica.TIPO.FLOTANTE, 2, 1);
+            PropiedadCadenaTexto cad1 = new PropiedadCadenaTexto();
+            PropiedadCadenaTexto cad2 = new PropiedadCadenaTexto(PropiedadCadenaTexto.TIPO.LINEA_UNICA,200,20);
+            PropiedadFecha fecha1 = new PropiedadFecha();
+            PropiedadFecha fecha2 = new PropiedadFecha(PropiedadFecha.TIPO.FECHA_LARGA_HORA);
+            frm.AgregarControl(num1);
+            //this.Controls.Add(num1);
+            frm.AgregarControl(num2);
+            frm.AgregarControl(num3);
+            frm.AgregarControl(cad1);
+            frm.AgregarControl(cad2);
+            frm.AgregarControl(fecha1);
+            frm.AgregarControl(fecha2);
             frm.ShowDialog();
-
+            
         }
     }
 }

@@ -33,6 +33,7 @@
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
+            this.ogpPanelPrincipal = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,12 +71,23 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(23, 22);
             this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // ogpPanelPrincipal
+            // 
+            this.ogpPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ogpPanelPrincipal.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.ogpPanelPrincipal.Location = new System.Drawing.Point(0, 25);
+            this.ogpPanelPrincipal.Name = "ogpPanelPrincipal";
+            this.ogpPanelPrincipal.Size = new System.Drawing.Size(379, 303);
+            this.ogpPanelPrincipal.TabIndex = 2;
             // 
             // frmEdicionGenerico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 328);
+            this.Controls.Add(this.ogpPanelPrincipal);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmEdicionGenerico";
             this.Text = "frmEdicionGenerico";
@@ -93,6 +105,7 @@
         private System.Windows.Forms.ToolStripButton btnGuardar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton btnSalir;
+        private System.Windows.Forms.FlowLayoutPanel ogpPanelPrincipal;
 
     }
 }
