@@ -46,11 +46,11 @@
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\..\Tools\Iesi.Collections.dll</HintPath>
+      <HintPath>dlls\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\..\Tools\NHibernate.dll</HintPath>
+      <HintPath>dlls\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System">
@@ -97,6 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsInterfaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="clsRepo.cs" />
     <Compile Include="Domain\Empleado.cs" />
     <Compile Include="Domain\PagoHist.cs" />

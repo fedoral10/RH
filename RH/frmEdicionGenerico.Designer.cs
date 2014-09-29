@@ -102,10 +102,10 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnGuardar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton btnSalir;
-        private System.Windows.Forms.FlowLayoutPanel ogpPanelPrincipal;
+        public System.Windows.Forms.ToolStripButton btnGuardar;
+        public System.Windows.Forms.FlowLayoutPanel ogpPanelPrincipal;
 
     }
 }

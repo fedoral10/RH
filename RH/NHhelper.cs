@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace RH
 {
@@ -18,7 +19,12 @@ namespace RH
           /*configuration.AddProperties(NHibernate.Connection.ConnectionProvider)*/
             //configuration.AddAssembly(Assembly.GetCallingAssembly());
             configuration.Configure();
+            string archivo =AppDomain.CurrentDomain.BaseDirectory + "\\RH.db3";
+            
+            configuration.SetProperty("connection.connection_string", "Data Source=" +archivo+";Version=3;compress=true");
             SessionFactory = configuration.BuildSessionFactory();
+            ExportarEsquema(configuration);
+
             /*configuration.AddAssembly(typeof(Domain.Empleado).Assembly);
             configuration.AddAssembly(typeof(Domain.PagoHist).Assembly);
             configuration.AddAssembly(typeof(Domain.SalarioBaseHist).Assembly);
@@ -27,6 +33,12 @@ namespace RH
             //NHibernate.Dialect.SQLiteDialect
         }
 
+        private static void ExportarEsquema(Configuration cfg)
+        {
+            var lol = new SchemaUpdate(cfg);
+            lol.Execute(false, true);
+            
+        }
         public static ISession GetCurrentSession()
         {
             if (SessionFactory == null)
