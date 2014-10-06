@@ -58,5 +58,11 @@ namespace RH
             MessageBox.Show("Hola "+((TextBox)x[0]).Text);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CatalogoEmpleado frm = new CatalogoEmpleado("Empleados");
+            frm.ShowDialog();
+        }
+
     }
 }

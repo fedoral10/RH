@@ -1,6 +1,7 @@
 ﻿using RH.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -83,5 +84,50 @@ namespace RH
 
         }
     }
+    public class CatalogoEmpleado : frmCatalogoGenerico
+    {
+        DevExpress.XtraGrid.Columns.GridColumn col_ID;
+        DevExpress.XtraGrid.Columns.GridColumn col_Nombre1;
+        DevExpress.XtraGrid.Columns.GridColumn col_Nombre2;
+        DevExpress.XtraGrid.Columns.GridColumn col_Apellido1;
+        DevExpress.XtraGrid.Columns.GridColumn col_Apellido2;
+        DevExpress.XtraGrid.Columns.GridColumn col_Cedula;
+        DevExpress.XtraGrid.Columns.GridColumn col_FechaNacimiento;
+        DevExpress.XtraGrid.Columns.GridColumn col_Inss;
+        DevExpress.XtraGrid.Columns.GridColumn col_SalarioBase;
 
+        public CatalogoEmpleado(string Nombre)
+        {
+            this.Text = Nombre;
+            this.inicializa_componentes();
+        }
+        private void inicializa_componentes()
+        {
+            clsRepo repo = new clsRepo();
+            /*
+            EmpleadoID
+            PrimerNombre
+            SegundoNombre
+            PrimerApellido
+            SegundoApellido
+            Cedula
+            FechaNacimiento
+            NumeroInss
+            SalarioBase
+             */
+            col_ID = this.agregar_columna("ID", "EmpleadoID", "colID");
+            col_Nombre1 = this.agregar_columna("Primer Nombre", "PrimerNombre", "colNombre1");
+            col_Nombre2 = this.agregar_columna("Segundo Nombre", "SegundoNombre", "colNombre2");
+            col_Apellido1 = this.agregar_columna("Primer Apellido", "PrimerApellido", "colApellido1");
+            col_Apellido2 = this.agregar_columna("Segundo Apellido", "SegundoApellido", "colApellido2");
+            col_FechaNacimiento = this.agregar_columna("Fecha Nacimiento",  "FechaNacimiento", "colFechaNacimiento");
+            col_Inss = this.agregar_columna("No Inss", "NumeroInss", "colInss");
+            col_SalarioBase = this.agregar_columna("Salario Base", "SalarioBase", "colSalario");
+            
+
+            DataTable dt = new DataTable();
+            dt = clsRepoConvertidor.Seleccionar_Datatable<Empleado>();
+            this.establece_datasource(dt);
+        }
+    }
 }
