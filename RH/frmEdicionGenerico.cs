@@ -13,42 +13,42 @@ namespace RH
 {
     public partial class frmEdicionGenerico : Form
     {
-        private List<Label> etiquetas;
-        private List<TextBox> textos;
-        private List<NumericUpDown> numericos;
-        private List<DateTimePicker> fechas;
-        private List<Control> controles;
+        private List<Label> omglEtiquetas;
+        private List<TextBox> omglTextos;
+        private List<NumericUpDown> omglNumericos;
+        private List<DateTimePicker> omglFechas;
+        private List<Control> omglControles;
         public frmEdicionGenerico()
         {
-            this.etiquetas = new List<Label>();
-            this.textos = new List<TextBox>();
-            this.numericos = new List<NumericUpDown>();
-            this.fechas = new List<DateTimePicker>();
-            this.controles = new List<Control>();
+            this.omglEtiquetas = new List<Label>();
+            this.omglTextos = new List<TextBox>();
+            this.omglNumericos = new List<NumericUpDown>();
+            this.omglFechas = new List<DateTimePicker>();
+            this.omglControles = new List<Control>();
             InitializeComponent();
         }
         public void AgregarControl(PropiedadCadenaTexto control)
         {
-            this.etiquetas.Add(control.etiqueta);
-            this.textos.Add(control.cuadro);
+            this.omglEtiquetas.Add(control.omgEtiqueta);
+            this.omglTextos.Add(control.omgCuadro);
             Agregar(control);
         }
         public void AgregarControl(PropiedadNumerica control)
         {
-            etiquetas.Add(control.etiqueta);
-            this.numericos.Add(control.cuadro);
+            omglEtiquetas.Add(control.omgEtiqueta);
+            this.omglNumericos.Add(control.omgCuadro);
             Agregar(control);
         }
         public void AgregarControl(PropiedadFecha control)
         {
-            etiquetas.Add(control.etiqueta);
-            this.fechas.Add(control.cuadro);
+            omglEtiquetas.Add(control.omgEtiqueta);
+            this.omglFechas.Add(control.omgCuadro);
             Agregar(control);
         }
         private void Agregar(Control control)
         {
             this.ogpPanelPrincipal.Controls.Add(control);
-            this.controles.Add(control);
+            this.omglControles.Add(control);
             this.ogpPanelPrincipal.Refresh();
             this.ogpPanelPrincipal.Update();
         }
@@ -77,7 +77,7 @@ namespace RH
         {
             List<Size> tams_labels = new List<Size>();
             List<Size> tams_cuadros = new List<Size>();
-            foreach (Label lab in this.etiquetas)
+            foreach (Label lab in this.omglEtiquetas)
             {
                 tams_labels.Add(TextRenderer.MeasureText(lab.Text, lab.Font));
             }
@@ -91,31 +91,31 @@ namespace RH
                     }
 
             }
-            foreach (Label lab in this.etiquetas)
+            foreach (Label lab in this.omglEtiquetas)
             {
                 lab.Size = anchomax;
                 lab.TextAlign = ContentAlignment.MiddleLeft;
                 
             }
-            foreach (TextBox tex in this.textos)
+            foreach (TextBox tex in this.omglTextos)
             {
                 tex.Location = new Point(anchomax.Width, 1);
                 text = tex.Size;
                 tams_cuadros.Add(tex.Size);
             }
-            foreach (DateTimePicker dat in this.fechas)
+            foreach (DateTimePicker dat in this.omglFechas)
             {
                 dat.Location = new Point(anchomax.Width, 1);
                 tams_cuadros.Add(dat.Size);
             }
-            foreach (NumericUpDown num in this.numericos)
+            foreach (NumericUpDown num in this.omglNumericos)
             {
                 num.Location = new Point(anchomax.Width, 1);
                 tams_cuadros.Add(num.Size);
             }
             var x = (from tam in tams_cuadros
                      select tam.Width).Max();
-            foreach (Control con in this.controles)
+            foreach (Control con in this.omglControles)
             {
                 con.Size = new Size(anchomax.Width+ x, text.Height);
             }
@@ -134,9 +134,9 @@ namespace RH
     {
         public enum TIPO_NUMERICA {FLOTANTE,ENTERA}
         public enum TIPO_TEXTO { MULTILINEA, LINEA_UNICA }
-        string ogsNombre;
-        public NumericUpDown cuadro_numerico;
-        public TextBox cuadro_texto;
+        //string ogsNombre;
+        public NumericUpDown omgCuadroNumerico;
+        public TextBox omgCuadroTexto;
         
 
         public enum TIPO_FECHA { FECHA_CORTA, FECHA_LARGA, FECHA_CORTA_HORA, FECHA_LARGA_HORA }
@@ -147,73 +147,73 @@ namespace RH
         Size ogsFormato_Corto_Hora = new Size(150, 20);//short time
 
 
-        public DateTimePicker cuadro;
-        public Label etiqueta;
+        public DateTimePicker omgCuadro;
+        public Label omgEtiqueta;
 
         private void InicializaValoresFecha(TIPO_FECHA tipo = TIPO_FECHA.FECHA_CORTA, DateTime valor_inicial = new DateTime(), string texto_etiqueta = "Fecha: ")
         {
             valor_inicial = DateTime.Now;
-            this.cuadro = new DateTimePicker();
-            this.etiqueta = new Label();
-            cambia_formato(this.cuadro, tipo);
-            this.cuadro.Value = valor_inicial;
-            this.etiqueta.Text = texto_etiqueta;
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
-            this.etiqueta.Size = new Size(textSize.Width, cuadro.Height);
-            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
-            this.Controls.Add(etiqueta);
-            this.Controls.Add(cuadro);
-            this.cuadro.Location = new Point(etiqueta.Width, 1);
+            this.omgCuadro = new DateTimePicker();
+            this.omgEtiqueta = new Label();
+            this.Cambia_Formato(this.omgCuadro, tipo);
+            this.omgCuadro.Value = valor_inicial;
+            this.omgEtiqueta.Text = texto_etiqueta;
+            Size textSize = TextRenderer.MeasureText(omgEtiqueta.Text, omgEtiqueta.Font);
+            this.omgEtiqueta.Size = new Size(textSize.Width, omgCuadro.Height);
+            this.omgEtiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(omgEtiqueta);
+            this.Controls.Add(omgCuadro);
+            this.omgCuadro.Location = new Point(omgEtiqueta.Width, 1);
 
-            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+            this.Size = new Size(omgCuadro.Width + omgEtiqueta.Width + 10, omgCuadro.Height);
         }
         private void InicializaValoresNumerico(TIPO_NUMERICA tipo, decimal valor_inicial = 0, int cantidad_decimales = 0, decimal maximo = 99999999999999999, decimal minimo = -99999999999999999)
         {
             if (tipo == TIPO_NUMERICA.FLOTANTE && cantidad_decimales == 0)
             {
-                this.cuadro_numerico.DecimalPlaces = 2;
+                this.omgCuadroNumerico.DecimalPlaces = 2;
             }
             if (tipo == TIPO_NUMERICA.ENTERA)
             {
-                this.cuadro_numerico.DecimalPlaces = 0;
+                this.omgCuadroNumerico.DecimalPlaces = 0;
             }
             if (tipo == TIPO_NUMERICA.FLOTANTE && cantidad_decimales != 0)
             {
-                this.cuadro_numerico.DecimalPlaces = cantidad_decimales;
+                this.omgCuadroNumerico.DecimalPlaces = cantidad_decimales;
             }
-            this.cuadro_numerico.Maximum = maximo;
-            this.cuadro_numerico.Minimum = minimo;
-            this.cuadro_numerico.Value = valor_inicial;
+            this.omgCuadroNumerico.Maximum = maximo;
+            this.omgCuadroNumerico.Minimum = minimo;
+            this.omgCuadroNumerico.Value = valor_inicial;
         }
         public void InicializaValoresTexto(TIPO_TEXTO tipo, int ancho = 100, int alto = 20, string texto_inicial = "", string texto_etiqueta = "")
         {
-            this.cuadro_texto = new TextBox();
-            this.etiqueta = new Label();
-            this.cuadro_texto.Size = new Size(ancho, alto);
-            this.cuadro_texto.Text = texto_inicial;
-            this.etiqueta.Text = texto_etiqueta;
+            this.omgCuadroTexto = new TextBox();
+            this.omgEtiqueta = new Label();
+            this.omgCuadroTexto.Size = new Size(ancho, alto);
+            this.omgCuadroTexto.Text = texto_inicial;
+            this.omgEtiqueta.Text = texto_etiqueta;
             if (tipo == TIPO_TEXTO.LINEA_UNICA)
             {
-                this.cuadro_texto.Multiline = false;
+                this.omgCuadroTexto.Multiline = false;
             }
             else
             {
-                this.cuadro_texto.Multiline = true;
+                this.omgCuadroTexto.Multiline = true;
             }
             if (string.IsNullOrEmpty(texto_etiqueta))
             {
-                this.etiqueta.Text = "Cadena: ";
+                this.omgEtiqueta.Text = "Cadena: ";
             }
             else
             {
-                this.etiqueta.Text = texto_etiqueta + ": ";
+                this.omgEtiqueta.Text = texto_etiqueta + ": ";
             }
 
-            this.Controls.Add(etiqueta);
-            this.Controls.Add(cuadro_texto);
-            alinear();
+            this.Controls.Add(omgEtiqueta);
+            this.Controls.Add(omgCuadroTexto);
+            Alinear();
         }
-        private void cambia_formato(DateTimePicker dtp, TIPO_FECHA tipo)
+        private void Cambia_Formato(DateTimePicker dtp, TIPO_FECHA tipo)
         {
 
             switch (tipo)
@@ -238,15 +238,15 @@ namespace RH
                     break;
             }
         }
-        private void alinear()
+        private void Alinear()
         {
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
+            Size olTextSize = TextRenderer.MeasureText(omgEtiqueta.Text, omgEtiqueta.Font);
             //this.etiqueta.AutoSize = false;
-            this.etiqueta.Size = new Size(textSize.Width, cuadro_texto.Height);
-            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
-            this.cuadro_texto.Location = new Point(etiqueta.Width, 1);
+            this.omgEtiqueta.Size = new Size(olTextSize.Width, omgCuadroTexto.Height);
+            this.omgEtiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.omgCuadroTexto.Location = new Point(omgEtiqueta.Width, 1);
 
-            this.Size = new Size(cuadro_texto.Width + etiqueta.Width + 10, cuadro_texto.Height);
+            this.Size = new Size(omgCuadroTexto.Width + omgEtiqueta.Width + 10, omgCuadroTexto.Height);
         }
     }
      public class PropiedadNumerica : UserControl
@@ -254,32 +254,32 @@ namespace RH
         
         public enum TIPO {FLOTANTE,ENTERA}
         string ogsNombre;
-        public NumericUpDown cuadro;
-        public Label etiqueta;
+        public NumericUpDown omgCuadro;
+        public Label omgEtiqueta;
 
         private void InicializarObjetos()
         {
-            this.cuadro = new NumericUpDown();
-            this.etiqueta = new Label();
-            this.cuadro.Name = "cuadro";
-            this.etiqueta.Name = "etiqueta";
+            this.omgCuadro = new NumericUpDown();
+            this.omgEtiqueta = new Label();
+            this.omgCuadro.Name = "cuadro";
+            this.omgEtiqueta.Name = "etiqueta";
 
             if (string.IsNullOrEmpty(this.Nombre))
             {
-                this.etiqueta.Text = "Numerico: ";
+                this.omgEtiqueta.Text = "Numerico: ";
             }
             else
             {
-                this.etiqueta.Text = this.Nombre + ": ";
+                this.omgEtiqueta.Text = this.Nombre + ": ";
             }
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
-            this.etiqueta.Size = new Size(textSize.Width,cuadro.Height);
-            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
-            this.Controls.Add(etiqueta);
-            this.Controls.Add(cuadro);
-            this.cuadro.Location = new Point(etiqueta.Width, 1);
+            Size textSize = TextRenderer.MeasureText(omgEtiqueta.Text, omgEtiqueta.Font);
+            this.omgEtiqueta.Size = new Size(textSize.Width,omgCuadro.Height);
+            this.omgEtiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(omgEtiqueta);
+            this.Controls.Add(omgCuadro);
+            this.omgCuadro.Location = new Point(omgEtiqueta.Width, 1);
             
-            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+            this.Size = new Size(omgCuadro.Width + omgEtiqueta.Width + 10, omgCuadro.Height);
         }
         public string Nombre
         {
@@ -290,19 +290,19 @@ namespace RH
         {
             if (tipo == TIPO.FLOTANTE &&cantidad_decimales ==0)
             {
-                this.cuadro.DecimalPlaces = 2;
+                this.omgCuadro.DecimalPlaces = 2;
             }
             if(tipo == TIPO.ENTERA)
             {
-                this.cuadro.DecimalPlaces = 0;
+                this.omgCuadro.DecimalPlaces = 0;
             }
             if(tipo == TIPO.FLOTANTE && cantidad_decimales != 0)
             {
-                this.cuadro.DecimalPlaces = cantidad_decimales;
+                this.omgCuadro.DecimalPlaces = cantidad_decimales;
             }
-            this.cuadro.Maximum = maximo;
-            this.cuadro.Minimum = minimo;
-            this.cuadro.Value = valor_inicial;
+            this.omgCuadro.Maximum = maximo;
+            this.omgCuadro.Minimum = minimo;
+            this.omgCuadro.Value = valor_inicial;
         }
         public PropiedadNumerica(string nombre,TIPO tipo)
         {
@@ -342,52 +342,52 @@ namespace RH
     public class PropiedadCadenaTexto : UserControl
     {
         public enum TIPO {MULTILINEA,LINEA_UNICA}
-        public TextBox cuadro;
-        public Label etiqueta;
+        public TextBox omgCuadro;
+        public Label omgEtiqueta;
         public void InicializaValores(TIPO tipo,int ancho=100, int alto=20,string texto_inicial ="",string texto_etiqueta="")
         {
-            this.cuadro = new TextBox();
-            this.etiqueta = new Label();
-            this.cuadro.Size = new Size(ancho, alto);
-            this.cuadro.Text = texto_inicial;
-            this.etiqueta.Text = texto_etiqueta;
+            this.omgCuadro = new TextBox();
+            this.omgEtiqueta = new Label();
+            this.omgCuadro.Size = new Size(ancho, alto);
+            this.omgCuadro.Text = texto_inicial;
+            this.omgEtiqueta.Text = texto_etiqueta;
             if (tipo == TIPO.LINEA_UNICA)
             {
-                this.cuadro.Multiline = false;
+                this.omgCuadro.Multiline = false;
             }
             else
             {
-                this.cuadro.Multiline = true;
+                this.omgCuadro.Multiline = true;
             }
             if (string.IsNullOrEmpty(texto_etiqueta))
             {
-                this.etiqueta.Text = "Cadena: ";
+                this.omgEtiqueta.Text = "Cadena: ";
             }
             else
             {
-                this.etiqueta.Text = texto_etiqueta + ": ";
+                this.omgEtiqueta.Text = texto_etiqueta + ": ";
             }
            
-            this.Controls.Add(etiqueta);
-            this.Controls.Add(cuadro);
+            this.Controls.Add(omgEtiqueta);
+            this.Controls.Add(omgCuadro);
             alinear();
         }
 
         private void alinear()
         {
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
+            Size omlTextSize = TextRenderer.MeasureText(omgEtiqueta.Text, omgEtiqueta.Font);
             //this.etiqueta.AutoSize = false;
-            this.etiqueta.Size = new Size(textSize.Width, cuadro.Height);
-            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
-            this.cuadro.Location = new Point(etiqueta.Width, 1);
+            this.omgEtiqueta.Size = new Size(omlTextSize.Width, omgCuadro.Height);
+            this.omgEtiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.omgCuadro.Location = new Point(omgEtiqueta.Width, 1);
 
-            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+            this.Size = new Size(omgCuadro.Width + omgEtiqueta.Width + 10, omgCuadro.Height);
         }
         
         public PropiedadCadenaTexto()
         {
             InicializaValores(TIPO.LINEA_UNICA);
-            this.etiqueta.TextChanged += etiqueta_TextChanged;
+            this.omgEtiqueta.TextChanged += etiqueta_TextChanged;
         }
 
         void etiqueta_TextChanged(object sender, EventArgs e)
@@ -410,25 +410,25 @@ namespace RH
         Size ogsFormato_Corto_Hora = new Size(150, 20);//short time
 
 
-        public DateTimePicker cuadro;
-        public Label etiqueta;
+        public DateTimePicker omgCuadro;
+        public Label omgEtiqueta;
 
         private void InicializaValores(TIPO tipo = TIPO.FECHA_CORTA, DateTime valor_inicial=new DateTime(),string texto_etiqueta="Fecha: ")
         {
             valor_inicial = DateTime.Now;
-            this.cuadro = new DateTimePicker();
-            this.etiqueta = new Label();
-            cambia_formato(this.cuadro, tipo);
-            this.cuadro.Value = valor_inicial;
-            this.etiqueta.Text = texto_etiqueta;
-            Size textSize = TextRenderer.MeasureText(etiqueta.Text, etiqueta.Font);
-            this.etiqueta.Size = new Size(textSize.Width, cuadro.Height);
-            this.etiqueta.TextAlign = ContentAlignment.MiddleLeft;
-            this.Controls.Add(etiqueta);
-            this.Controls.Add(cuadro);
-            this.cuadro.Location = new Point(etiqueta.Width, 1);
+            this.omgCuadro = new DateTimePicker();
+            this.omgEtiqueta = new Label();
+            cambia_formato(this.omgCuadro, tipo);
+            this.omgCuadro.Value = valor_inicial;
+            this.omgEtiqueta.Text = texto_etiqueta;
+            Size textSize = TextRenderer.MeasureText(omgEtiqueta.Text, omgEtiqueta.Font);
+            this.omgEtiqueta.Size = new Size(textSize.Width, omgCuadro.Height);
+            this.omgEtiqueta.TextAlign = ContentAlignment.MiddleLeft;
+            this.Controls.Add(omgEtiqueta);
+            this.Controls.Add(omgCuadro);
+            this.omgCuadro.Location = new Point(omgEtiqueta.Width, 1);
 
-            this.Size = new Size(cuadro.Width + etiqueta.Width + 10, cuadro.Height);
+            this.Size = new Size(omgCuadro.Width + omgEtiqueta.Width + 10, omgCuadro.Height);
         }
         public PropiedadFecha()
         {

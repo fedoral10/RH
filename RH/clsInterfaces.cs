@@ -11,15 +11,15 @@ namespace RH
     public class CrearEmpleado : frmEdicionGenerico
     {
         /**/
-        PropiedadNumerica cEmpleado;
-        PropiedadCadenaTexto cPNombre;
-        PropiedadCadenaTexto cSNombre;
-        PropiedadCadenaTexto cPApellido;
-        PropiedadCadenaTexto cSApellido;
-        PropiedadCadenaTexto cCedula;
-        PropiedadFecha cFechaNacimiento;
-        PropiedadNumerica cNumeroInss;
-        PropiedadNumerica cSalario;
+        PropiedadNumerica omg_cEmpleado;
+        PropiedadCadenaTexto omg_cPNombre;
+        PropiedadCadenaTexto omg_cSNombre;
+        PropiedadCadenaTexto omg_cPApellido;
+        PropiedadCadenaTexto omg_cSApellido;
+        PropiedadCadenaTexto omg_cCedula;
+        PropiedadFecha omg_cFechaNacimiento;
+        PropiedadNumerica omg_cNumeroInss;
+        PropiedadNumerica omg_cSalario;
         public CrearEmpleado()
         {
             this.Text = "Nuevo Empleado";
@@ -30,34 +30,34 @@ namespace RH
         { 
             //Empleado 
 
-            cEmpleado = new PropiedadNumerica("No Empleado: ", PropiedadNumerica.TIPO.ENTERA);
-            cEmpleado.etiqueta.Text = "ID";
-            cPNombre = new PropiedadCadenaTexto();
+            omg_cEmpleado = new PropiedadNumerica("No Empleado: ", PropiedadNumerica.TIPO.ENTERA);
+            omg_cEmpleado.omgEtiqueta.Text = "ID";
+            omg_cPNombre = new PropiedadCadenaTexto();
             
-            cSNombre = new PropiedadCadenaTexto();
-            cPApellido = new PropiedadCadenaTexto();
-            cSApellido = new PropiedadCadenaTexto();
-            cCedula = new PropiedadCadenaTexto();
-            cFechaNacimiento = new PropiedadFecha();
-            cNumeroInss = new PropiedadNumerica("Inss: ", PropiedadNumerica.TIPO.ENTERA);
-            cSalario = new PropiedadNumerica("Salario: ", PropiedadNumerica.TIPO.FLOTANTE);
-            cPNombre.etiqueta.Text = "Primer Nombre: ";
-            cSNombre.etiqueta.Text = "Segundo Nombre: ";
-            cPApellido.etiqueta.Text = "Primer Apellido: ";
-            cSApellido.etiqueta.Text = "Segundo Apellido: ";
-            cNumeroInss.etiqueta.Text = "No INSS: ";
-            cSalario.etiqueta.Text = "Salario Base: ";
-            cCedula.etiqueta.Text = "Cédula: ";
-            cFechaNacimiento.etiqueta.Text = "Fecha de Nacimiento: ";
-            this.AgregarControl(cEmpleado);
-            this.AgregarControl(cPNombre);
-            this.AgregarControl(cSNombre);
-            this.AgregarControl(cPApellido);
-            this.AgregarControl(cSApellido);
-            this.AgregarControl(cCedula);
-            this.AgregarControl(cFechaNacimiento);
-            this.AgregarControl(cNumeroInss);
-            this.AgregarControl(cSalario);
+            omg_cSNombre = new PropiedadCadenaTexto();
+            omg_cPApellido = new PropiedadCadenaTexto();
+            omg_cSApellido = new PropiedadCadenaTexto();
+            omg_cCedula = new PropiedadCadenaTexto();
+            omg_cFechaNacimiento = new PropiedadFecha();
+            omg_cNumeroInss = new PropiedadNumerica("Inss: ", PropiedadNumerica.TIPO.ENTERA);
+            omg_cSalario = new PropiedadNumerica("Salario: ", PropiedadNumerica.TIPO.FLOTANTE);
+            omg_cPNombre.omgEtiqueta.Text = "Primer Nombre: ";
+            omg_cSNombre.omgEtiqueta.Text = "Segundo Nombre: ";
+            omg_cPApellido.omgEtiqueta.Text = "Primer Apellido: ";
+            omg_cSApellido.omgEtiqueta.Text = "Segundo Apellido: ";
+            omg_cNumeroInss.omgEtiqueta.Text = "No INSS: ";
+            omg_cSalario.omgEtiqueta.Text = "Salario Base: ";
+            omg_cCedula.omgEtiqueta.Text = "Cédula: ";
+            omg_cFechaNacimiento.omgEtiqueta.Text = "Fecha de Nacimiento: ";
+            this.AgregarControl(omg_cEmpleado);
+            this.AgregarControl(omg_cPNombre);
+            this.AgregarControl(omg_cSNombre);
+            this.AgregarControl(omg_cPApellido);
+            this.AgregarControl(omg_cSApellido);
+            this.AgregarControl(omg_cCedula);
+            this.AgregarControl(omg_cFechaNacimiento);
+            this.AgregarControl(omg_cNumeroInss);
+            this.AgregarControl(omg_cSalario);
             this.btnGuardar.Click += new EventHandler(btnGuardar_Click);
         }
 
@@ -69,15 +69,15 @@ namespace RH
         private void guardar()
         {
             Empleado emp = new Empleado();
-            emp.EmpleadoID = decimal.ToInt32(this.cEmpleado.cuadro.Value);
-            emp.PrimerNombre = this.cPNombre.cuadro.Text;
-            emp.SegundoNombre = this.cSNombre.cuadro.Text;
-            emp.PrimerApellido = this.cPNombre.cuadro.Text;
-            emp.SegundoApellido = this.cSApellido.cuadro.Text;
-            emp.Cedula = this.cCedula.cuadro.Text;
-            emp.NumeroInss = this.cNumeroInss.cuadro.Value.ToString();
-            emp.SalarioBase = this.cSalario.cuadro.Value;
-            emp.FechaNacimiento = this.cFechaNacimiento.cuadro.Value;
+            emp.EmpleadoID = decimal.ToInt32(this.omg_cEmpleado.omgCuadro.Value);
+            emp.PrimerNombre = this.omg_cPNombre.omgCuadro.Text;
+            emp.SegundoNombre = this.omg_cSNombre.omgCuadro.Text;
+            emp.PrimerApellido = this.omg_cPNombre.omgCuadro.Text;
+            emp.SegundoApellido = this.omg_cSApellido.omgCuadro.Text;
+            emp.Cedula = this.omg_cCedula.omgCuadro.Text;
+            emp.NumeroInss = this.omg_cNumeroInss.omgCuadro.Value.ToString();
+            emp.SalarioBase = this.omg_cSalario.omgCuadro.Value;
+            emp.FechaNacimiento = this.omg_cFechaNacimiento.omgCuadro.Value;
 
             clsRepo repo = new clsRepo();
             repo.Insertar<Empleado>(emp);
@@ -86,19 +86,19 @@ namespace RH
     }
     public class CatalogoEmpleado : frmCatalogoGenerico
     {
-        DevExpress.XtraGrid.Columns.GridColumn col_ID;
-        DevExpress.XtraGrid.Columns.GridColumn col_Nombre1;
-        DevExpress.XtraGrid.Columns.GridColumn col_Nombre2;
-        DevExpress.XtraGrid.Columns.GridColumn col_Apellido1;
-        DevExpress.XtraGrid.Columns.GridColumn col_Apellido2;
-        DevExpress.XtraGrid.Columns.GridColumn col_Cedula;
-        DevExpress.XtraGrid.Columns.GridColumn col_FechaNacimiento;
-        DevExpress.XtraGrid.Columns.GridColumn col_Inss;
-        DevExpress.XtraGrid.Columns.GridColumn col_SalarioBase;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_ID;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Nombre1;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Nombre2;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Apellido1;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Apellido2;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Cedula;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_FechaNacimiento;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_Inss;
+        DevExpress.XtraGrid.Columns.GridColumn omgCol_SalarioBase;
 
-        public CatalogoEmpleado(string Nombre)
+        public CatalogoEmpleado(string spNombre)
         {
-            this.Text = Nombre;
+            this.Text = spNombre;
             this.inicializa_componentes();
         }
         private void inicializa_componentes()
@@ -115,19 +115,20 @@ namespace RH
             NumeroInss
             SalarioBase
              */
-            col_ID = this.agregar_columna("ID", "EmpleadoID", "colID");
-            col_Nombre1 = this.agregar_columna("Primer Nombre", "PrimerNombre", "colNombre1");
-            col_Nombre2 = this.agregar_columna("Segundo Nombre", "SegundoNombre", "colNombre2");
-            col_Apellido1 = this.agregar_columna("Primer Apellido", "PrimerApellido", "colApellido1");
-            col_Apellido2 = this.agregar_columna("Segundo Apellido", "SegundoApellido", "colApellido2");
-            col_FechaNacimiento = this.agregar_columna("Fecha Nacimiento",  "FechaNacimiento", "colFechaNacimiento");
-            col_Inss = this.agregar_columna("No Inss", "NumeroInss", "colInss");
-            col_SalarioBase = this.agregar_columna("Salario Base", "SalarioBase", "colSalario");
+            omgCol_ID = this.Agregar_Columna("ID", "EmpleadoID", "colID");
+            omgCol_Nombre1 = this.Agregar_Columna("Primer Nombre", "PrimerNombre", "colNombre1");
+            omgCol_Nombre2 = this.Agregar_Columna("Segundo Nombre", "SegundoNombre", "colNombre2");
+            omgCol_Apellido1 = this.Agregar_Columna("Primer Apellido", "PrimerApellido", "colApellido1");
+            omgCol_Apellido2 = this.Agregar_Columna("Segundo Apellido", "SegundoApellido", "colApellido2");
+            omgCol_Cedula = this.Agregar_Columna("Cédula", "Cedula", "colCedula");
+            omgCol_FechaNacimiento = this.Agregar_Columna("Fecha Nacimiento",  "FechaNacimiento", "colFechaNacimiento");
+            omgCol_Inss = this.Agregar_Columna("No Inss", "NumeroInss", "colInss");
+            omgCol_SalarioBase = this.Agregar_Columna("Salario Base", "SalarioBase", "colSalario");
             
 
             DataTable dt = new DataTable();
             dt = clsRepoConvertidor.Seleccionar_Datatable<Empleado>();
-            this.establece_datasource(dt);
+            this.Establece_Datasource(dt);
         }
     }
 }

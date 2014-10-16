@@ -24,7 +24,7 @@ namespace RH
             gridView1.OptionsBehavior.ReadOnly = true;
             gridView1.OptionsBehavior.Editable = false;
         }
-        public DevExpress.XtraGrid.Columns.GridColumn agregar_columna(string Texto, string Nombre_Columna_db,string Nombre_Columna_Control)
+        public DevExpress.XtraGrid.Columns.GridColumn Agregar_Columna(string Texto, string Nombre_Columna_db,string Nombre_Columna_Control)
         { 
             DevExpress.XtraGrid.Columns.GridColumn col = new DevExpress.XtraGrid.Columns.GridColumn();
             col.Name = Nombre_Columna_Control;
@@ -36,12 +36,12 @@ namespace RH
             gridView1.BestFitColumns();
             return col;
         }
-        public void eliminar_columna(DevExpress.XtraGrid.Columns.GridColumn Columna)
+        public void Eliminar_Columna(DevExpress.XtraGrid.Columns.GridColumn Columna)
         {
             gridView1.Columns.Remove(Columna);
         }
 
-        public void establece_datasource(Object ds)
+        public void Establece_Datasource(Object ds)
         {
             this.gridControl1.DataSource = ds;
         }
