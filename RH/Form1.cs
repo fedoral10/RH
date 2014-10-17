@@ -64,5 +64,22 @@ namespace RH
             frm.ShowDialog();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            clsRepo repo = new clsRepo();
+            Empleado ex = new Empleado();
+            ex.Cedula = "test";
+            ex.FechaNacimiento = DateTime.Now;
+            ex.PrimerApellido = "Test";
+            ex.PrimerNombre = "asdf";
+            ex.SegundoApellido = "asdfasf";
+            ex.SegundoNombre = "asdfasdfas";
+            repo.Insertar<Empleado>(ex);
+            PagoHist ph = new PagoHist();
+            ph.Empleado = ex;
+            ph.Monto = "123";
+            repo.Insertar<PagoHist>(ph);
+        }
+
     }
 }

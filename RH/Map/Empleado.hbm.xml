@@ -26,5 +26,10 @@
     <property name="SalarioBase">
       <column name="SALARIO_BASE" sql-type="Decimal" not-null="false" />
     </property>
+    <set name="PagoHistID" inverse ="true" cascade="save-update">
+      <key column="PAGO_HIST" not-null="true"/>
+      <one-to-many class="PagoHist"/>
+    </set> 
+    <!--<many-to-one class="PagoHist" name="PagoHistID" column="PAGO_HIST"/>-->
   </class>
 </hibernate-mapping>

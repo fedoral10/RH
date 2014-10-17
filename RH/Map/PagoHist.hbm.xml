@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="PagoHist" table="PAGO_HIST" lazy="true" >
-    <id name="PagoHistID" column="PAGO_HIST" />
-    <property name="Empleado">
+
+    <!--<id name="PagoHistID" column="PAGO_HIST" />-->
+    <composite-id>
+      <key-property name="PagoHistID" column="PAGO_HIST" />
+      <key-many-to-one name="Empleado" column="EMPLEADO"/> 
+    </composite-id>
+    <!--<set name="Empleado" inverse ="true" cascade="save-update">
+      <key column="EMPLEADO" not-null="true"/>
+      <one-to-many class="Empleado"/>
+    </set>   -->
+    <!--<property name="Empleado">
       <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
-    </property>
+    </property>-->
     <property name="Monto">
       <column name="MONTO" sql-type="Decimal " not-null="false" />
     </property>

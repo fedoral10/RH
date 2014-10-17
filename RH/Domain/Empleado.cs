@@ -15,5 +15,6 @@ namespace RH.Domain {
         public virtual DateTime? FechaNacimiento { get; set; }
         public virtual string NumeroInss { get; set; }
         public virtual decimal? SalarioBase { get; set; }
+        public virtual Iesi.Collections.Generic.ISet<PagoHist> PagoHistID { get; set; }
     }
 }
