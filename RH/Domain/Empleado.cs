@@ -16,5 +16,7 @@ namespace RH.Domain {
         public virtual string NumeroInss { get; set; }
         public virtual decimal? SalarioBase { get; set; }
         public virtual Iesi.Collections.Generic.ISet<PagoHist> PagoHistID { get; set; }
+        public virtual Iesi.Collections.Generic.ISet<Vacacion> VacacionID { get; set; }
+        public virtual Iesi.Collections.Generic.ISet<SalarioBaseHist> SalarioBaseHistID { get; set; }
     }
 }

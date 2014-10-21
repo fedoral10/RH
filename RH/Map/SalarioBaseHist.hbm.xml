@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="SalarioBaseHist" table="SALARIO_BASE_HIST" lazy="true" >
-    <id name="SalarioBaseHistID" column="SALARIO_BASE_HIST" />
+    <composite-id>
+      <key-property name="SalarioBaseHistID" column="SALARIO_BASE_HIST" />
+      <key-many-to-one name="Empleado" column="EMPLEADO"/>
+    </composite-id>
+    <!--<id name="SalarioBaseHistID" column="SALARIO_BASE_HIST" />
     <property name="Empleado">
       <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
-    </property>
+    </property>-->
     <property name="Monto">
       <column name="MONTO" sql-type="Decimal " not-null="false" />
     </property>

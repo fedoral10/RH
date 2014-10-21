@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="RH" namespace="RH.Domain" xmlns="urn:nhibernate-mapping-2.2">
   <class name="Vacacion" table="VACACION" lazy="true" >
-    <id name="VacacionID" column="VACACION" />
+    <!--<id name="VacacionID" column="VACACION" />
     <property name="Empleado">
       <column name="EMPLEADO" sql-type="INTEGER" not-null="false" />
-    </property>
+    </property>-->
+    <composite-id>
+      <key-property name="VacacionID" column="VACACION" />
+      <key-many-to-one name="Empleado" column="EMPLEADO"/>
+    </composite-id>
     <property name="Motivo">
       <column name="MOTIVO" sql-type="Varchar " not-null="false" />
     </property>

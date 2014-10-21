@@ -79,6 +79,7 @@ namespace RH
             ph.Empleado = ex;
             ph.Monto = "123";
             repo.Insertar<PagoHist>(ph);
+            
         }
 
     }

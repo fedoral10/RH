@@ -30,6 +30,14 @@
       <key column="PAGO_HIST" not-null="true"/>
       <one-to-many class="PagoHist"/>
     </set> 
+    <set name="VacacionID" inverse ="true" cascade="save-update">
+      <key column="VACACION" not-null="true"/>
+      <one-to-many class="Vacacion"/>
+    </set> 
+    <set name="SalarioBaseHistID" inverse ="true" cascade="save-update">
+      <key column="SALARIO_BASE_HIST" not-null="true"/>
+      <one-to-many class="SalarioBaseHist"/>
+    </set> 
     <!--<many-to-one class="PagoHist" name="PagoHistID" column="PAGO_HIST"/>-->
   </class>
 </hibernate-mapping>

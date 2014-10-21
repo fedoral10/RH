@@ -131,4 +131,15 @@ namespace RH
             this.Establece_Datasource(dt);
         }
     }
+
+    public class AsociarNuevoSalario : frmEdicionGenerico
+    {
+
+    }
+    public class RealizarPago
+    { 
+    }
+    public class CrearVacacion : frmEdicionGenerico
+    { 
+    }
 }
